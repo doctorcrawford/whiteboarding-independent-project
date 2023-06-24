@@ -1,0 +1,185 @@
+Question #1: Turning Strings to URLs
+URLs cannot have spaces. Instead, all spaces in a string are replaced with %20. Write an algorithm that replaces all spaces in a string with %20.
+
+You may not use the replace() method or regular expressions to solve this problem. Solve the problem with and without recursion.
+
+Example
+Input: "Jasmine Ann Jones"
+
+Output: "Jasmine%20Ann%20Jones"
+
+//
+Solution
+
+function stringToUrl (str) {
+  if (typeof str != 'string') {
+    return "Please enter a string!";
+  }
+
+  let url = "";
+    for (let c of str) {
+        if (c === " ") url = url + "%20";
+        else url = url + c;
+    }
+
+  return url;
+}
+
+
+
+
+function stringToUrlRecur (str) {
+  if (typeof str != 'string') {
+    return "Please enter a string!";
+  }
+
+  if (str === "") {
+    return str;
+  }
+
+  if (str[str.length-1] === " ") {
+    return stringToUrlRecur(str.substring(0, str.length-1)) + "%20";
+  }
+  return stringToUrlRecur(str.substring(0, str.length-1)) + str[str.length-1];
+}
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+Question #2: Array Deduping
+Write an algorithm that removes duplicates from an array. Do not use a function like filter() to solve this. Once you have solved the problem, demonstrate how it can be solved with filter(). Solve the problem with and without recursion.
+
+Example
+Input: [7, 9, "hi", 12, "hi", 7, 53]
+
+Output: [7, 9, "hi", 12, 53]
+
+
+//
+Solution
+
+// no filter, no recursion //
+function dupRemove(arr) {
+  let outputArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let flag = false;
+    for (let index = 0; index < outputArr.length; index++) {
+      if (arr[i] === outputArr[index]) {
+        flag = true;
+      }
+    }
+    if (flag === false) {
+      outputArr.push(arr[i])
+    }
+  }
+
+  return outputArr;
+}
+
+//with filter, without recursion//
+function removeDuplicatesFilter(arr) {
+  if (typeof array != Array) return "Please input an array!";
+
+  return arr.filter((element, index, arr) => arr.indexOf(element) === index);
+}
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+Question #3: Compressing Strings
+Write an algorithm that takes a string with repeated characters and compresses them, using a number to show how many times the repeated character has been compressed. For instance, aaa would be written as 3a. Solve the problem with and without recursion.
+
+Example
+Input: "aaabccdddda"
+
+Output: "3ab2c4da"
+
+//without recursion
+function compress(string){
+  let obj = {};
+
+  for (let char of string) {
+    obj[char] = (obj[char] || 0) + 1;
+  }
+  
+  return Object.keys(obj).reduce((compString, key) => compString + obj[key] + key, "");
+}
+
+
+
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+Question #4: Checking for Uniqueness
+Write an algorithm that determines whether all the elements in a string are unique. You may not convert the string into an array or use array methods to solve this problem. The algorithm should return a boolean.
+
+Example
+Input: "hello"
+
+Output: false
+
+Input: "copyright"
+
+Output: true
+
+//if indexOf is allowed...
+function uniqueCheck(str) {
+  if (typeof str != 'string') return 'Please enter a string!';
+
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) != i) {
+      return false;
+    }
+  }
+  return true;
+}
+
+//otherwise...
+function uniqueCheck(str) {
+  if (typeof str !== 'string') return 'Please enter a string!';
+
+  let obj = {};
+
+  for (let char of str) {
+    if (obj[char]) {
+      return false;
+    }
+    obj[char] = true;
+  }
+  return true;
+}
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+Question #5: Array Sorting
+Write an algorithm that sorts an array without using the sort() method. There are many different sorting algorithms — take the time to read about the following:
+
+Quick sort
+Merge sort
+Heap sort
+Insertion sort
+Bubble sort
+Selection sort
+You may implement any of the above algorithms (or your own) to solve the problem — as long as it doesn't use sort().
+
+Example
+Input: [9, 2, 7, 12]
+
+Output: [2, 7, 9, 12]

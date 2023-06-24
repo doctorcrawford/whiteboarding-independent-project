@@ -1,0 +1,53 @@
+Prompt #4
+
+whether all elements in string are unique
+string remain string, no array or array methods allowed
+return boolean
+
+input: 'hello' //pair of 'l's
+output: false
+
+input: 'copyright'
+output: true
+
+edge: check if input is string or num, if not, return string error msg
+
+Pseudocode:
+input of string
+loop through string, check if char previously exists
+if exists, return false
+else, return true
+
+
+
+function checkUnique(string) {
+	if(typeof string !== 'string') {
+  	return 'Please enter a string!';
+  }
+  
+  for (let i = 0; i < string.length; i ++) {
+  	if (string.indexOf(string[i]) !=i) {
+    	return false;
+    }
+  }
+  return true;
+}
+
+
+
+
+function checkUniqueWithoutIndexOf(string) {
+	if(typeof string !== 'string') {
+  	return 'Please enter a string!';
+	}
+  
+  let obj = {};
+  
+  for (let char of string) {
+  	if (obj[char]) {
+    	return false;
+    }
+    obj[char] = true;
+  }
+  return true;
+}
